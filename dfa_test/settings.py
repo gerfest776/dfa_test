@@ -16,6 +16,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "users",
+    # third party
+    "drf_yasg",
+    "rest_framework",
 ]
 
 
@@ -102,7 +106,8 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(sys.path[0], "static")
+STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(sys.path[0], "media")
 MEDIA_URL = "/media/"
