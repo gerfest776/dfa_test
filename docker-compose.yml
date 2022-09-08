@@ -16,21 +16,18 @@ x-settings: &global
     - DB_PORT=${DB_PORT}
 
 services:
-#  api:
-#    container_name: api
-#    command: gunicorn LIIS_test.wsgi:application --bind 0.0.0.0:8000
-#    volumes:
-#      - ./static:/app/static
-#      - ./media:/app/media
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    expose:
-#      - 8000
-#
-#    <<: *global
-#    depends_on:
-#      - database
+  api:
+    container_name: api
+    command: gunicorn dfa_test.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./static:/app/static
+      - ./media:/app/media
+    build:
+      context: .
+      dockerfile: Dockerfile
+    <<: *global
+    depends_on:
+      - database
 
   database:
     image: postgres:latest
@@ -40,15 +37,15 @@ services:
       - "5432:5432"
     <<: *global
 
-#  nginx:
-#    build: ./nginx
-#    volumes:
-#      - ./static:/var/www/stc/static
-#      - ./media:/var/www/stc/media
-#    ports:
-#      - "80:80"
-#    depends_on:
-#      - api
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./static:/var/www/stc/static
+      - ./media:/var/www/stc/media
+    ports:
+      - "80:80"
+    depends_on:
+      - api
 
 
 volumes:
