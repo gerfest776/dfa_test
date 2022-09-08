@@ -53,7 +53,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "dfa_test.wsgi.application"
 
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
